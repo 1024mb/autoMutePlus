@@ -1,0 +1,17 @@
+{
+  "name": "Auto Mute Plus Plus",
+  "description": "Auto mute of new tabs.",
+  "main": "src/bg.js",
+  "scripts": {
+    "build-ts": "tsc --build --force",
+    "build-ext-alt": "web-ext build --source-dir ./src --overwrite-dest --ignore-files=package.json package-lock.json .\\tsconfig.json .\\tsconfig.tsbuildinfo .\\.gitignore",
+    "build-ext": "web-ext build --source-dir ./src --overwrite-dest --ignore-files=package.json package-lock.json .\\.gitignore"
+  },
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.4"
+  },
+  "volta": {
+    "node": "22.14.0"
+  }
+}

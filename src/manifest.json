@@ -1,7 +1,7 @@
 {
   "applications": {
     "gecko": {
-      "id": "autoMutePlus@rogerskeie",
+      "id": "autoMutePlusPlus@1024mb",
       "strict_min_version": "45.0a1"
     }
   },
@@ -22,7 +22,7 @@
   "manifest_version": 2,
   "name": "__MSG_autoMutePlus__",
   "default_locale": "en",
-  "version": "1.8",
+  "version": "1.9",
   "icons": {
     "48": "icons/icon_muted.svg"
   },

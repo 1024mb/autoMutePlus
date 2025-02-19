@@ -1,50 +1,50 @@
-'use strict';
+"use strict";
 
 (function () {
     browser.storage.local.get().then(result => {
         if (result.normalMode === undefined) {
             browser.storage.local.set({
-                normalMode: true,
-                privateMode: true,
-                darkTheme: false,
-                autoMute: true,
-                whitelist: '',
-                blacklist: ''
-            });
+                                          normalMode: true,
+                                          privateMode: true,
+                                          darkTheme: false,
+                                          autoMute: true,
+                                          whitelist: "",
+                                          blacklist: ""
+                                      });
         }
 
         toggleIcon();
     });
 
     createMenu([
-        {
-            id: 'autoMutePlus',
-        },
-        {
-            id: 'addDomainToWhitelist',
-        },
-        {
-            id: 'addUrlToWhitelist',
-        },
-        {
-            id: 'addDomainToBlacklist',
-        },
-        {
-            id: 'addUrlToBlacklist',
-        },
-        {
-            id: 'muteAllTabs',
-            icons: {
-                '16': 'icons/icon_muted.svg'
-            }
-        },
-        {
-            id: 'unmuteAllTabs',
-            icons: {
-                '16': 'icons/icon_unmuted.svg'
-            }
-        }
-    ]);
+                   {
+                       id: "autoMutePlus",
+                   },
+                   {
+                       id: "addDomainToWhitelist",
+                   },
+                   {
+                       id: "addUrlToWhitelist",
+                   },
+                   {
+                       id: "addDomainToBlacklist",
+                   },
+                   {
+                       id: "addUrlToBlacklist",
+                   },
+                   {
+                       id: "muteAllTabs",
+                       icons: {
+                           "16": "icons/icon_muted.svg"
+                       }
+                   },
+                   {
+                       id: "unmuteAllTabs",
+                       icons: {
+                           "16": "icons/icon_unmuted.svg"
+                       }
+                   }
+               ]);
 
     browser.menus.onClicked.addListener(menuListener);
     browser.tabs.onCreated.addListener(createdListener);
@@ -56,8 +56,8 @@
  */
 function createMenu(items) {
     items.forEach(item => {
-        if (item.id !== 'autoMutePlus') {
-            item.parentId = 'autoMutePlus';
+        if (item.id !== "autoMutePlus") {
+            item.parentId = "autoMutePlus";
         }
 
         item.title = browser.i18n.getMessage(item.id);
@@ -70,16 +70,16 @@ function createMenu(items) {
  * @param  {browser.tabs.Tab} tab
  */
 function menuListener(info, tab) {
-    if (info.menuItemId.endsWith('muteAllTabs')) {
-        setTabMutes(info.menuItemId === 'muteAllTabs');
+    if (info.menuItemId.endsWith("muteAllTabs")) {
+        setTabMutes(info.menuItemId === "muteAllTabs");
     } else {
         const url = new URL(tab.url);
         let action;
         let listType;
-        [action, listType] = info.menuItemId.split('To');
-        addItemToList(escapeRegExp(action === 'addDomain' ? url.hostname : url.href), listType);
+        [action, listType] = info.menuItemId.split("To");
+        addItemToList(escapeRegExp(action === "addDomain" ? url.hostname : url.href), listType);
 
-        if (listType === 'Blacklist') {
+        if (listType === "Blacklist") {
             setMuted(tab, true);
         }
     }
@@ -89,11 +89,9 @@ function menuListener(info, tab) {
  * @param  {browser.tabs.Tab} tab
  */
 function createdListener(tab) {
-    if (tab.url === 'about:newtab') {
-        autoMute(tab);
-    } else {
-        browser.tabs.onUpdated.addListener(updatedListener);
-    }
+    autoMute(tab)
+
+    browser.tabs.onUpdated.addListener(updatedListener, {properties: ["url"]});
 }
 
 /**
@@ -102,10 +100,7 @@ function createdListener(tab) {
  * @param  {browser.tabs.Tab} tab
  */
 function updatedListener(tabId, changeInfo, tab) {
-    if (changeInfo.status === 'loading' && tab.url !== 'about:blank') {
-        autoMute(tab);
-        browser.tabs.onUpdated.removeListener(updatedListener);
-    }
+    autoMute(tab);
 }
 
 /**
@@ -137,8 +132,8 @@ function addItemToList(item, listType) {
     browser.storage.local.get(listType).then(result => {
         const listContents = result[listType].trim();
         let keys = {};
-        const needsNewline = listContents !== '';
-        keys[listType] = listContents + (needsNewline ? '\n' : '') + item;
+        const needsNewline = listContents !== "";
+        keys[listType] = listContents + (needsNewline ? "\n" : "") + item;
         browser.storage.local.set(keys);
     });
 }
@@ -157,26 +152,31 @@ function autoMute(tab) {
             blacklisted
             || (!whitelisted && result.autoMute && ((tab.incognito && privateMode) || (!tab.incognito && normalMode)))
         ) {
+            console.debug("We should mute")
             setMuted(tab, true);
+        } else {
+            console.debug("We should unmute")
+            setMuted(tab, false);
         }
     });
 }
 
 function toggleAutoMute() {
-    browser.storage.local.get('autoMute').then(result => {
+    browser.storage.local.get("autoMute").then(result => {
         browser.storage.local.set({autoMute: !result.autoMute});
         toggleIcon();
     });
 }
 
 function toggleIcon() {
-    browser.storage.local.get(['autoMute', 'darkTheme']).then(result => {
+    browser.storage.local.get(["autoMute", "darkTheme"]).then(result => {
         browser.browserAction.setIcon({
-            path: 'icons/icon_' + (result.autoMute ? 'muted' : 'unmuted') + (result.darkTheme ? '_dark' : '') + '.svg'
-        });
+                                          path: "icons/icon_" + (result.autoMute ? "muted" : "unmuted") + (result.darkTheme ? "_dark" : "") + ".svg"
+                                      });
         browser.browserAction.setTitle({
-            title: browser.i18n.getMessage((result.autoMute ? 'disable' : 'enable') + 'AutoMute')
-        });
+                                           title: browser.i18n.getMessage(
+                                               (result.autoMute ? "disable" : "enable") + "AutoMute")
+                                       });
     });
 }
 
@@ -186,19 +186,21 @@ function toggleIcon() {
  * @returns {boolean}
  */
 function listMatchesTab(listContents, tab) {
-    for (let line of listContents.split('\n')) {
-        line = line.trim();
+    console.debug(`Checking: ${tab.url}`);
 
-        if (line === '') {
+    for (const line of listContents.split("\n")) {
+        const trimmed_line = line.trim();
+        if (trimmed_line === "") {
             continue;
         }
 
         try {
-            if ((new RegExp(line, 'i')).test(tab.url)) {
+            if ((new RegExp(trimmed_line, "i")).test(tab.url)) {
                 return true;
             }
-        } catch (e) {
-            console.log(browser.i18n.getMessage('invalidRegex') + ' "' + line + '".');
+        }
+        catch (e) {
+            console.log(browser.i18n.getMessage("invalidRegex") + " \"" + trimmed_line + "\".");
         }
     }
 
@@ -210,5 +212,5 @@ function listMatchesTab(listContents, tab) {
  * @returns {string}
  */
 function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
