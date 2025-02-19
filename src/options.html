@@ -2,14 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="options.css"/>
+    <link href="options.css" rel="stylesheet" />
 </head>
 <body>
-<h3 id="title"></h3>
+<h2 id="title"></h2>
 <form id="optionsForm">
-    <input type="checkbox" id="normalMode"><label id="label1" for="normalMode"></label><br>
-    <input type="checkbox" id="privateMode"><label id="label2" for="privateMode"></label><br>
-    <input type="checkbox" id="darkTheme"><label id="label3" for="darkTheme"></label><br><br>
+    <div>
+        <input id="normalMode" type="checkbox"><label for="normalMode" id="label1"></label><br>
+        <input id="privateMode" type="checkbox"><label for="privateMode" id="label2"></label><br>
+        <input id="darkTheme" type="checkbox"><label for="darkTheme" id="label3"></label><br><br>
+    </div>
     <div id="whitelist-warnings"></div>
     <label id="label4" for="whitelist"></label><br>
     <textarea id="whitelist" cols="60" rows="15"></textarea><br><br>

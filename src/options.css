@@ -1,9 +1,42 @@
+html {
+    background-color: #1c1c1c;
+}
+
+body {
+    color: aliceblue;
+    font-size: large;
+}
+
 label {
-    padding: 0 0 7px 0;
+    padding: 0 0 1rem 0;
     display: inline-block;
 }
 
 .warning {
     color: red;
     display: table;
+}
+
+#optionsForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+#title {
+    border: 1px solid aliceblue;
+    padding: 1rem;
+}
+
+#whitelist, #blacklist {
+    padding: 0.5rem;
+    background-color: #1c1c1c;
+    color: aliceblue;
+    line-height: 1.3;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #ccc;
+    box-shadow: 0.1rem 0.1rem 0.1rem #999;
+    font-size: large;
 }
