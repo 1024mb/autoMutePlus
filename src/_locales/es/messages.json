@@ -1,0 +1,53 @@
+{
+  "autoMutePlus": {
+    "message": "Auto Mute Plus Plus"
+  },
+  "extensionDescription": {
+    "message": "Silenciar automáticamente nuevas pestañas."
+  },
+  "options": {
+    "message": "Opciones"
+  },
+  "normal": {
+    "message": "Silenciar pestañas en ventanas normales."
+  },
+  "private": {
+    "message": "Silenciar pestañas en ventanas privadas."
+  },
+  "darkTheme": {
+    "message": "Usar ícono para temas oscuros."
+  },
+  "whitelist": {
+    "message": "Lista blanca (una expresión regular por línea). Nunca serán silenaciados."
+  },
+  "blacklist": {
+    "message": "Lista negra (una expresión regular por línea). Siempre serán sienciados."
+  },
+  "invalidRegex": {
+    "message": "Expresión regular inválida"
+  },
+  "enableAutoMute": {
+    "message": "Clic para activar autosilenciar"
+  },
+  "disableAutoMute": {
+    "message": "Clic para desactivar autosilenciar"
+  },
+  "addDomainToWhitelist": {
+    "message": "Agregar dominio a la lista blanca"
+  },
+  "addUrlToWhitelist": {
+    "message": "Agregar URL a la lista blanca"
+  },
+  "addDomainToBlacklist": {
+    "message": "Agregar dominio a la lista negra"
+  },
+  "addUrlToBlacklist": {
+    "message": "Agregar URL a la lista negra"
+  },
+  "muteAllTabs": {
+    "message": "Silenciar todas las pestañas"
+  },
+  "unmuteAllTabs": {
+    "message": "Activar sonido en todas las pestañas"
+  }
+}

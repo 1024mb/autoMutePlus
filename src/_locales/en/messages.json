@@ -1,6 +1,6 @@
 {
   "autoMutePlus": {
-    "message": "Auto Mute Plus"
+    "message": "Auto Mute Plus Plus"
   },
   "extensionDescription": {
     "message": "Auto mute of new tabs."
@@ -9,13 +9,13 @@
     "message": "Options"
   },
   "normal": {
-    "message": "Mute new tabs in a normal window"
+    "message": "Mute tabs in normal windows"
   },
   "private": {
-    "message": "Mute new tabs in a private window"
+    "message": "Mute tabs in private windows"
   },
   "darkTheme": {
-    "message": "Dark browser theme (check if your browser toolbar has a dark background)."
+    "message": "Use icon for dark-theme"
   },
   "whitelist": {
     "message": "Whitelist (one valid regular expression per line). Will never be muted."
