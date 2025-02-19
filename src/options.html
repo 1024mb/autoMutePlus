@@ -3,20 +3,23 @@
 <head>
     <meta charset="utf-8">
     <link href="options.css" rel="stylesheet" />
+    <title>Auto Mute Plus Plus</title>
 </head>
 <body>
 <h2 id="title"></h2>
 <form id="optionsForm">
-    <div>
-        <input id="normalMode" type="checkbox"><label for="normalMode" id="label1"></label><br>
-        <input id="privateMode" type="checkbox"><label for="privateMode" id="label2"></label><br>
-        <input id="darkTheme" type="checkbox"><label for="darkTheme" id="label3"></label><br><br>
+    <div id="checkboxes">
+        <input id="normalMode" type="checkbox"> <label for="normalMode" id="checkboxLabel1"></label><br>
+        <input id="privateMode" type="checkbox"> <label for="privateMode" id="checkboxLabel2"></label><br>
+        <input id="darkTheme" type="checkbox"> <label for="darkTheme" id="checkboxLabel3"></label><br>
+        <input id="ignoreAboutTabs" type="checkbox"> <label for="ignoreAboutTabs" id="checkboxLabel4"></label><br>
+        <input id="ignoreAddonTabs" type="checkbox"> <label for="ignoreAddonTabs" id="checkboxLabel5"></label><br><br>
     </div>
     <div id="whitelist-warnings"></div>
-    <label id="label4" for="whitelist"></label><br>
+    <label for="whitelist" id="textAreaLabel1"></label><br>
     <textarea id="whitelist" cols="60" rows="15"></textarea><br><br>
     <div id="blacklist-warnings"></div>
-    <label id="label5" for="blacklist"></label><br>
+    <label for="blacklist" id="textAreaLabel2"></label><br>
     <textarea id="blacklist" cols="60" rows="15"></textarea>
 </form>
 <script src="options.js"></script>

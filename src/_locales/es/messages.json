@@ -49,5 +49,11 @@
   },
   "unmuteAllTabs": {
     "message": "Activar sonido en todas las pestañas"
+  },
+  "ignoreAboutTabs": {
+    "message": "Ignorar todas las pestañas de Mozilla (las que empiezan con 'about:')"
+  },
+  "ignoreAddonTabs": {
+    "message": "Ignorar todas las pestañas de extensiones"
   }
 }

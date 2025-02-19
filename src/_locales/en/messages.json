@@ -49,5 +49,11 @@
   },
   "unmuteAllTabs": {
     "message": "Unmute all tabs"
+  },
+  "ignoreAboutTabs": {
+    "message": "Ignore all Mozilla tabs (ones starting with 'about:')"
+  },
+  "ignoreAddonTabs": {
+    "message": "Ignore all addon tabs"
   }
 }

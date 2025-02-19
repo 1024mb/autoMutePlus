@@ -131,6 +131,11 @@ function addItemToList(item, listType) {
 
     browser.storage.local.get(listType).then(result => {
         const listContents = result[listType].trim();
+
+        if (result[listType].split("\n").some(line => line.trim() === item.trim())) {
+            return
+        }
+
         let keys = {};
         const needsNewline = listContents !== "";
         keys[listType] = listContents + (needsNewline ? "\n" : "") + item;
@@ -145,8 +150,8 @@ function autoMute(tab) {
     browser.storage.local.get().then(result => {
         const normalMode = result.normalMode;
         const privateMode = result.privateMode;
-        const whitelisted = listMatchesTab(result.whitelist, tab);
-        const blacklisted = listMatchesTab(result.blacklist, tab);
+        const whitelisted = listMatchesTab(result.whitelist, tab, result.ignoreAboutTabs, result.ignoreAddonTabs);
+        const blacklisted = listMatchesTab(result.blacklist, tab, false, false);
 
         if (
             blacklisted
@@ -183,10 +188,24 @@ function toggleIcon() {
 /**
  * @param  {string} listContents
  * @param  {browser.tabs.Tab} tab
+ * @param  {boolean} ignoreAboutTabs
+ * @param  {boolean} ignoreAddonTabs
  * @returns {boolean}
  */
-function listMatchesTab(listContents, tab) {
+function listMatchesTab(listContents, tab, ignoreAboutTabs, ignoreAddonTabs) {
     console.debug(`Checking: ${tab.url}`);
+
+    if (ignoreAboutTabs) {
+        if (tab.url.startsWith("about:")) {
+            return true
+        }
+    }
+
+    if (ignoreAddonTabs) {
+        if (tab.url.startsWith("moz-extension://")) {
+            return true
+        }
+    }
 
     for (const line of listContents.split("\n")) {
         const trimmed_line = line.trim();

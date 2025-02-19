@@ -2,11 +2,16 @@
 
 (function () {
     document.getElementById("title").textContent = browser.i18n.getMessage("options");
-    document.getElementById("label1").textContent = browser.i18n.getMessage("normal");
-    document.getElementById("label2").textContent = browser.i18n.getMessage("private");
-    document.getElementById("label3").textContent = browser.i18n.getMessage("darkTheme");
-    document.getElementById("label4").textContent = browser.i18n.getMessage("whitelist");
-    document.getElementById("label5").textContent = browser.i18n.getMessage("blacklist");
+
+    document.getElementById("checkboxLabel1").textContent = browser.i18n.getMessage("normal");
+    document.getElementById("checkboxLabel2").textContent = browser.i18n.getMessage("private");
+    document.getElementById("checkboxLabel3").textContent = browser.i18n.getMessage("darkTheme");
+    document.getElementById("checkboxLabel4").textContent = browser.i18n.getMessage("ignoreAboutTabs");
+    document.getElementById("checkboxLabel5").textContent = browser.i18n.getMessage("ignoreAddonTabs");
+
+    document.getElementById("textAreaLabel1").textContent = browser.i18n.getMessage("whitelist");
+    document.getElementById("textAreaLabel2").textContent = browser.i18n.getMessage("blacklist");
+
     document.addEventListener("DOMContentLoaded", restoreOptions);
     document.getElementById("optionsForm").addEventListener("change", saveOptions);
 
@@ -39,6 +44,8 @@ function saveOptions() {
         browser.storage.local.set({
                                       normalMode: document.getElementById("normalMode").checked,
                                       privateMode: document.getElementById("privateMode").checked,
+                                      ignoreAboutTabs: document.getElementById("ignoreAboutTabs").checked,
+                                      ignoreAddonTabs: document.getElementById("ignoreAddonTabs").checked,
                                       darkTheme: darkTheme,
                                       whitelist: whitelistContents,
                                       blacklist: blacklistContents
@@ -85,6 +92,8 @@ function restoreOptions() {
     browser.storage.local.get().then(result => {
         document.getElementById("normalMode").checked = result.normalMode;
         document.getElementById("privateMode").checked = result.privateMode;
+        document.getElementById("ignoreAboutTabs").checked = result.ignoreAboutTabs;
+        document.getElementById("ignoreAddonTabs").checked = result.ignoreAddonTabs;
         document.getElementById("darkTheme").checked = result.darkTheme;
         document.getElementById("whitelist").value = result.whitelist;
         document.getElementById("blacklist").value = result.blacklist;
