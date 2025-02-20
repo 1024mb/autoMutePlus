@@ -18,10 +18,10 @@
     "message": "Usar ícono para temas oscuros."
   },
   "whitelist": {
-    "message": "Lista blanca (una expresión regular por línea). Nunca serán silenaciados."
+    "message": "Lista blanca (una expresión regular por línea). Nunca serán silenciados."
   },
   "blacklist": {
-    "message": "Lista negra (una expresión regular por línea). Siempre serán sienciados."
+    "message": "Lista negra (una expresión regular por línea). Siempre serán silenciados."
   },
   "invalidRegex": {
     "message": "Expresión regular inválida"
