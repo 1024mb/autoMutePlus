@@ -132,7 +132,7 @@ function addItemToList(item, listType) {
     browser.storage.local.get(listType).then(result => {
         const listContents = result[listType].trim();
 
-        if (result[listType].split("\n").some(line => line.trim() === item.trim())) {
+        if (listContents.split("\n").some(line => line.trim() === item.trim())) {
             return
         }
 
